@@ -1,4 +1,5 @@
 #ui.R
+library(plotly)
 require(shiny)
 require(shinydashboard)
 
@@ -7,11 +8,15 @@ dashboardPage(
   ),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Visualization One", tabName = "barchart1", icon = icon("dashboard")),
-      menuItem("Visualization Two", tabName = "barchart2", icon = icon("dashboard")),
-      menuItem("Visualization Three", tabName = "barchart3", icon = icon("dashboard"))
+      menuItem("Barchart", tabName = "barchart1", icon = icon("dashboard")),
+      menuItem("Boxplot", tabName = "boxplot", icon = icon("dashboard")),
+      menuItem("Histogram", tabName = "histogram", icon = icon("dashboard")),
+      menuItem("Scatter Plot", tabName = "scatterplot", icon = icon("dashboard")),
+      menuItem("Crosstabs,KPIS,Parameters", tabName = "crosstab", icon = icon("dashboard"))
     )
   ),
+  
+  
   dashboardBody(    
     tabItems(
       # Begin Barchart1 tab content.
@@ -25,13 +30,13 @@ dashboardPage(
                          hr(), # Add space after button.
                          DT::dataTableOutput("barchartData1")
                 ),
-                tabPanel("Barchart", "Black = Sum of Sales per Region, Red = Average Sum of Sales per Category, and  Blue = (Sum of Sales per Region - Average Sum of Sales per Category)", plotOutput("barchartPlot1", height=15000))
+                tabPanel("Barchart", "Black = Violent Crimes Done, Red = Average Number of Violent Crimes, and  Blue = (ViolentCrimes per State - Average Number of Crimes per State Over Times)", plotOutput("barchartPlot1", height=15000))
               )
       ),
       # End Barchart1 tab content.
       
-      # Begin Barchart2 tab content.
-      tabItem(tabName = "barchart2",
+      # Begin Boxplot tab content.
+      tabItem(tabName = "boxplot",
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb3", "Get data from:",
@@ -39,15 +44,17 @@ dashboardPage(
                          uiOutput("regions3"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
                          actionButton(inputId = "click3",  label = "To get data, click here"),
                          hr(), # Add space after button.
-                         DT::dataTableOutput("barchartData2")
+                         DT::dataTableOutput("boxplotData1")
                 ),
-                tabPanel("Barchart", "Map of United States of America and GSP Values in 2015", plotOutput("barchartPlot2", height=500))
+                tabPanel("Boxplot",plotlyOutput("boxplotPlot1", height=500))
               )
       ),
-      # End Barchart2 tab content.
+      # End Boxplot tab content.
       
-      # Begin Barchart3 tab content.
-      tabItem(tabName = "barchart3",
+    
+      
+      # Begin Histogram tab content.
+      tabItem(tabName = "histogram",
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb4", "Get data from:",
@@ -55,18 +62,53 @@ dashboardPage(
                          uiOutput("regions4"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
                          actionButton(inputId = "click4",  label = "To get data, click here"),
                          hr(), # Add space after button.
-                         DT::dataTableOutput("barchartData3")
+                         DT::dataTableOutput("histogramdata1")
                 ),
-                tabPanel("Barchart", "Map of the United States of America and Income/Compensation Ratios in 2015", plotOutput("barchartPlot3", height=500))
+                tabPanel("Histogram",plotlyOutput("histogramPlot1", height=3000))
+              )
+      ),
+      # End Histogram tab content.
+      
+      # Begin Scatter Plot tab content.
+      tabItem(tabName = "scatterplot",
+              tabsetPanel(
+                tabPanel("Data",  
+                         radioButtons("rb5", "Get data from:",
+                                      c("SQL" = "SQL"), inline=T),
+                         uiOutput("regions5"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
+                         actionButton(inputId = "click5",  label = "To get data, click here"),
+                         hr(), # Add space after button.
+                         DT::dataTableOutput("scatterplotdata1")
+                ),
+                tabPanel("Scatter Plot",plotlyOutput("scatterPlot1", height=2500))
+              )
+      ),
+      #End Scatter Plot tab Content
+      tabItem(tabName = "crosstab",
+              tabsetPanel(
+                tabPanel("Data",  
+                         radioButtons("rb6", "Get data from:",
+                                      c("SQL" = "SQL"), inline=T),
+                         
+                         sliderInput("KPI1", "Low_CrimetoEmployment:", 
+                                     min = 0, max = .009,  value = .009),
+                         sliderInput("KPI2", "Medium_CrimetoEmployment:", 
+                                     min = .009, max = .017,  value = .017),
+                         actionButton(inputId = "click6",  label = "To get data, click here"),
+                         hr(), # Add space after button.
+                         DT::dataTableOutput("plotdata1")
+                ),
+                tabPanel("CrossTab ",plotOutput("plot1", height=1500))
               )
       )
-      # End Barchart3 tab content.
       
       
       
       
-    )
-  )
+      
+      
+    
+  ))
 )
 
 
