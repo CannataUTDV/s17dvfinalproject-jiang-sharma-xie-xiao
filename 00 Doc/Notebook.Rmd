@@ -2,9 +2,9 @@
 title: "<center><b>Prime Time for Crime?</b></center>"
 author: "<center><b>Arun, Colin, Hongchao, Jack</b></center>"
 output:
-  html_notebook:
-    toc: yes
   html_document:
+    toc: yes
+  html_notebook:
     toc: yes
 ---
 
