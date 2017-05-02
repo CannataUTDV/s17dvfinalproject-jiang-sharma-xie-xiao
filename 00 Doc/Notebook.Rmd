@@ -14,6 +14,8 @@ Below we display our sessionInfo().
 sessionInfo(package=NULL)
 ```
 
+<center>![vis0](../banner.jpg)</center>
+
 #**Introduction**
 >Crime has always been a fascinating topic of discussion. It is human nature to pay attention to gruesome murders and moral corruptness. Why? We don’t know. However, we do know that through media outlets, society has developed an ideology that unemployment leads to higher crime rates. Is this true? Through our R Notebook, we try to show the various relationships between crime and unemployment, as well as independent crime rate and state level monetary analysis in an effort to better understand the truth behind these “ideologies.” We will demonstrate step-by-step instructions on how we created various graphs and charts in Tableau as well as explore the extraordinary visualizations produced through Shiny.
 
