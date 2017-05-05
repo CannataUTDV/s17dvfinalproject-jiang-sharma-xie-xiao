@@ -86,8 +86,10 @@ from employment
       
       {
         
-        p <-ggplot(df3())+geom_boxplot(aes(x=State,y=GSP,color=Year))+
-          theme(axis.text.x=element_text(angle=90,size=10,vjust=0.5))
+        p <-ggplot(df3(),(aes(x=State,y=GSP,text=Year)))+geom_boxplot()+geom_point()+
+          theme(axis.text.x=element_text(angle=90,size=10,vjust=0.5))+
+          ggtitle("Boxplot of State vs GSP over 2010-2014")
+          
         ggplotly(p)
         
       
@@ -117,8 +119,10 @@ from employment
     
     output$histogramPlot1 <- renderPlotly({
       p <-ggplot(df4(),aes(Employment))+geom_histogram(breaks=c(seq(280000,17400000,200000))) +
-      theme(axis.text.x=element_text(angle=90,size=10,vjust=0.5))+
-        facet_wrap(~year, ncol=1)
+      scale_x_continuous(labels = scales::comma) + 
+        theme(axis.text.x=element_text(angle=90, size=10, vjust=0.5))+
+        facet_wrap(~year, ncol=1)+
+        ggtitle("Histogram of Employment from 2010-2014 with bin sizes of 200000")
       ggplotly(p)})
     
     # End Histogram Tab ___________________________________________________________
@@ -145,10 +149,12 @@ from FinalCrimeData left inner join employment on `FinalCrimeData.csv/FinalCrime
     })
     
     output$scatterPlot1 <- renderPlotly({p <- ggplot(df5()) + 
+      labs(x="Violent Crime Rate",y="Food Insecurity Rate")+
         theme(axis.text.x=element_text(angle=90, size=16, vjust=0.5)) + 
         theme(axis.text.y=element_text(size=16, hjust=0.5)) +
         geom_point(aes(x=ViolentCrimeRate, y=FoodInsecurity, colour=State), size=2)+
-        facet_wrap(~Year, ncol=1)
+        facet_wrap(~Year,ncol=1)+
+        ggtitle("ScatterPlot of Violent crime rate vs Food Insecurity Rate over 2010-2014")
         ggplotly(p)}
       
       )
@@ -190,7 +196,8 @@ from FinalCrimeData left inner join employment on `FinalCrimeData.csv/FinalCrime
         theme(axis.text.x=element_text(angle=90, size=16, vjust=0.5)) + 
         theme(axis.text.y=element_text(size=16, hjust=0.5)) +
         geom_text(aes(x=Year, y=State, label=ViolentCrime), size=6) +
-        geom_tile(aes(x=Year, y=State, fill=CrimetoEmploymentKPI), alpha=0.50)
+        geom_tile(aes(x=Year, y=State, fill=CrimetoEmploymentKPI), alpha=0.50)+
+        ggtitle("CrossTab of ViolentCrime/Employment")
       })
     
     

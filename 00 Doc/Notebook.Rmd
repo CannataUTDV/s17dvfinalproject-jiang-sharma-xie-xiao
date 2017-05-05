@@ -169,7 +169,7 @@ subset(df, State == "Texas")
 <br>
 
 #### Description: 
-<p>The boxplot outlines each independent state and their GSP (Gross State Products) over 2010-2014. California has by far the largest GSP with its lowest value of 1953411 being higher than any other state's GSP . Texas comes in second place followed by New York. These states also have the biggest gaps between the top and bottom of their boxes. The smaller GSP’s are all much more knit together. <b>Vermont has all 5 of the lowest GSP values, but it’s GSP has been going up over the past few years.</b>
+<p>The boxplot outlines each independent state and their GSP (Gross State Products) over 2010-2014.We wanted to let you hover over each point to show the year, but couldn't find a way to do it directly through geom_boxplot.Our workaround was using geom_point, so if you hover over those points you can see the year of each value. Zoom in for the smaller states for more information. California has by far the largest GSP with its lowest value of 1953411 being higher than any other state's GSP . Texas comes in second place followed by New York. These states also have the biggest gaps between the top and bottom of their boxes. The smaller GSP’s are all much more knit together. <b>Vermont has all 5 of the lowest GSP values, but it’s GSP has been going up over the past few years.</b>
 </p>
 <br>
 

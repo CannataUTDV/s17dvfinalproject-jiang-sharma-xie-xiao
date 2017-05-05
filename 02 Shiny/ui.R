@@ -64,7 +64,7 @@ dashboardPage(
                          hr(), # Add space after button.
                          DT::dataTableOutput("histogramdata1")
                 ),
-                tabPanel("Histogram",plotlyOutput("histogramPlot1", height=3000))
+                tabPanel("Histogram",plotlyOutput("histogramPlot1", height=2500))
               )
       ),
       # End Histogram tab content.
@@ -80,7 +80,7 @@ dashboardPage(
                          hr(), # Add space after button.
                          DT::dataTableOutput("scatterplotdata1")
                 ),
-                tabPanel("Scatter Plot",plotlyOutput("scatterPlot1", height=2500))
+                tabPanel("Scatter Plot",plotlyOutput("scatterPlot1", height=3000))
               )
       ),
       #End Scatter Plot tab Content
